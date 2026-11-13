@@ -20,11 +20,11 @@ Ghi **trước khi vẽ**, mỗi người một dòng.
 
 | Mã | Frame xuất hiện | Frame cuối thấy được | Rẽ / dừng / đổi tốc độ ở frame | Bị che ở frame | Ghi chú |
 |---|---|---|---|---|---|
-| P1 | 0| | | | |
-| P2 | 0| | | | |
-| P3 | 2| | | | |
-| P4 | 0| | | | |
-| P5 | 40| | | | |
+| P1 | 0 | 149 | 32, 39, 55, 136 | 38 – 50 | Bị người áo đen cắt ngang che từ f38–f50 (f42–f44 khuất hẳn) |
+| P2 | 0 | 146 | 10, 20, 35, 109, 137 | 3 – 42 | Đi sát người khác, thay đổi kích thước và tốc độ liên tục |
+| P3 | 2 | 104 | 13, 23, 40, 104 | 20 – 46 | Di chuyển phía xa, bị che khuất rải rác |
+| P4 | 0 | 149 | 26, 36, 65, 86, 136 | Không | Đi thẳng đều dọc hành lang, không bị che khuất |
+| P5 | 40 | 149 | 49, 75, 90, 122 | Không | Đi vào khung hình từ frame 40, hướng đi khá đều |
 
 ## 2. Keyframe và thời gian (CP1, CP4)
 
@@ -47,20 +47,22 @@ Bạn đặt keyframe nhiều nhất ở người nào? Vì sao (người đó r
 
 ## 3. Đoạn bị che (CP2)
 
-Người bị che: `P_`
+Người bị che: `P1`
 
 | Mốc | Frame |
 |---|---:|
-| Bắt đầu bị che một phần (bật `occluded`) | |
-| Mất hẳn (bật `outside`) | |
-| Hiện lại (tắt `outside`) | |
-| Thấy rõ trở lại (tắt `occluded`) | |
+| Bắt đầu bị che một phần (bật `occluded`) | 38|
+| Mất hẳn (bật `outside`) |42 |
+| Hiện lại (tắt `outside`) |45 |
+| Thấy rõ trở lại (tắt `occluded`) |50|
 
-- Thời gian khuất hẳn: ___ frame = ___ giây.
+- Thời gian khuất hẳn: 3 frame = 0.1 giây.
 - Quyết định: giữ cùng ID / tạo track mới.
 - Lý do (trả lời 3 câu: khuất bao lâu so với 60 frame, ngoại hình có khớp, chỗ hiện lại có đúng hướng và tốc độ):
 
-...
+  1. **Thời gian khuất:** Chỉ khuất hẳn `3` frame (`0.1` giây), rất ngắn so với ngưỡng `60` frame (`2` giây) của lớp.
+  2. **Ngoại hình:** Khi hiện lại ở frame `45`, trang phục tối màu, dáng người và kích thước box (`89.6×256.4 px`) khớp với người trước lúc khuất ở frame `38` (`85.2×256.4 px`).
+  3. **Hướng và tốc độ:** Người này chỉ bị người đàn ông áo đen quần sáng đi cắt ngang qua che tạm thời; vị trí hiện lại ở frame `45` đúng với hướng di chuyển và tốc độ ước lượng từ trước đoạn che, nên giữ nguyên cùng một track ID (`P1`).
 
 Ảnh chụp màn hình:
 
