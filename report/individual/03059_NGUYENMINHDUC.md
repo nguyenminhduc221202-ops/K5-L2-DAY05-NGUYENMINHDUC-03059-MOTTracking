@@ -6,13 +6,13 @@
 
 ## 0. Thông tin học viên
 
-- Họ tên:
-- MSSV:
-- Mã đề (A/B/C):
-- Email:
-- Link repository:
-- Giờ bắt đầu:
-- Giờ kết thúc:
+- Họ tên:NGUYEN MINH DUC
+- MSSV:03059
+- Mã đề (A/B/C):B
+- Email:nguyenminhduc221202@gmail.com
+- Link repository:https://github.com/nguyenminhduc221202-ops/K5-L2-DAY05-NGUYENMINHDUC-03059-MOTTracking.git
+- Giờ bắt đầu:4:27
+- Giờ kết thúc:6:46
 
 ## 1. Xem trước đoạn video (CP0)
 
@@ -20,11 +20,11 @@ Ghi **trước khi vẽ**, mỗi người một dòng.
 
 | Mã | Frame xuất hiện | Frame cuối thấy được | Rẽ / dừng / đổi tốc độ ở frame | Bị che ở frame | Ghi chú |
 |---|---|---|---|---|---|
-| P1 | | | | | |
-| P2 | | | | | |
-| P3 | | | | | |
-| P4 | | | | | |
-| P5 | | | | | |
+| P1 | 0| | | | |
+| P2 | 0| | | | |
+| P3 | 2| | | | |
+| P4 | 0| | | | |
+| P5 | 40| | | | |
 
 ## 2. Keyframe và thời gian (CP1, CP4)
 
@@ -32,18 +32,18 @@ Số keyframe lấy từ kết quả `src/check_submission.py`.
 
 | Mã | Số keyframe | Keyframe ở frame | Số frame có mặt | Keyframe / 100 frame | Thời gian (phút) | Chỗ khó |
 |---|---|---|---|---|---|---|
-| P1 | | | | | | |
-| P2 | | | | | | |
-| P3 | | | | | | |
-| P4 | | | | | | |
-| P5 | | | | | | |
-| **Tổng** | | | | | | |
+| P1 |7|[0, 32, 39, 50, 55, 136, 149]| | | | |
+| P2 |33|[3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 24, 26, 28, 29, 31, 33, 34, 37, 38, 42, 109, 137, 141, 145]| | | | |
+| P3 |19|[2, 3, 4, 5, 6, 7, 9, 10, 13, 17, 18, 19, 22, 23, 33, 40, 46, 104, 145]| | | | |
+| P4 |17|[0, 26, 36, 65, 86, 101, 134, 136, 138, 139, 141, 142, 143, 145, 146, 147, 148]| | | | |
+| P5 |12|[40, 49, 75, 86, 90, 93, 96, 108, 122, 125, 140, 149] | | | | |
+| **Tổng** |88 |- |705| 12.5| | |
 
-Keyframe / 100 frame của cả bài = tổng keyframe ÷ tổng số frame có mặt × 100 = ...
+Keyframe / 100 frame của cả bài = tổng keyframe ÷ tổng số frame có mặt × 100 = 88 ÷ 705 × 100 = 12.5
 
 Bạn đặt keyframe nhiều nhất ở người nào? Vì sao (người đó rẽ, dừng, lại gần camera hay bị che)?
 
-...
+3-42 chủ yếu box sát người
 
 ## 3. Đoạn bị che (CP2)
 
@@ -94,16 +94,49 @@ Lỗi nào chỉ lượt 2 (theo cảnh) mới thấy, lượt 1 (theo người)
 
 | Kiểm tra | Kết quả |
 |---|---|
-| Tên file MOT 1.1 | |
-| Tên file CVAT for video 1.1 | |
-| Số track ID khác nhau trong `gt/gt.txt` (phải là 5) | |
-| Frame `outside` không có dòng trong `gt.txt` (đúng / sai) | |
-| Job đã completed trên CVAT máy cá nhân | |
+| Tên file MOT 1.1 | nguyenminhduc_mot.zip|
+| Tên file CVAT for video 1.1 | nguyenminhduc_cvat_video.zip|
+| Số track ID khác nhau trong `gt/gt.txt` (phải là 5) | 5|
+| Frame `outside` không có dòng trong `gt.txt` (đúng / sai) |đúng |
+| Job đã completed trên CVAT máy cá nhân |complete |
 
 Dán phần tóm tắt in ra từ `src/check_submission.py`:
 
 ```text
-...
+Số frame in theo CVAT (bắt đầu từ 0). Trong gt.txt, frame_id = frame CVAT + 1.
+
+=== File MOT 1.1: nguyenminhduc_mot.zip ===
+  Số track ID: 5   |   Tổng số box: 705
+  [OK]        Đúng 5 track ID.
+
+  Track | Frame có mặt | Số frame | Đoạn vắng (outside)
+      1 |   0–149      |      150 | -
+      2 |   0–149      |      150 | -
+      3 |   2–149      |      148 | -
+      4 |   3–149      |      147 | -
+      5 |  40–149      |      110 | -
+
+
+=== File CVAT for video 1.1: nguyenminhduc_cvat_video.zip ===
+
+  Track | Nhãn   | Frame thấy | Keyframe | KF/100 frame | Frame occluded | Lần bật outside
+      0 | person |        150 |        7 |          4.7 |             11 |               0
+              Track 0: keyframe ở frame [0, 32, 39, 50, 55, 136, 149]
+      1 | person |        147 |       33 |         22.4 |             33 |               0
+              Track 1: keyframe ở frame [3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 20, 21, 22, 24, 26, 28, 29, 31, 33, 34, 37, 38, 42, 109, 137, 141, 145]
+      2 | person |        148 |       19 |         12.8 |             46 |               0
+              Track 2: keyframe ở frame [2, 3, 4, 5, 6, 7, 9, 10, 13, 17, 18, 19, 22, 23, 33, 40, 46, 104, 145]
+      3 | person |        150 |       17 |         11.3 |              0 |               0
+              Track 3: keyframe ở frame [0, 26, 36, 65, 86, 101, 134, 136, 138, 139, 141, 142, 143, 145, 146, 147, 148]
+      4 | person |        110 |       12 |         10.9 |              0 |               0
+              Track 4: keyframe ở frame [40, 49, 75, 86, 90, 93, 96, 108, 122, 125, 140, 149]
+
+  Tổng: 88 keyframe / 705 frame có mặt = 12.5 keyframe / 100 frame
+  [OK]        Đọc được 5 track từ annotations.xml.
+
+=== Tóm tắt ===
+  Lỗi: 0   |   Cảnh báo: 0
+  Đạt. Dán phần tóm tắt này vào báo cáo mục 5.
 ```
 
 ## 6. Ba câu kết
@@ -119,28 +152,6 @@ Dán phần tóm tắt in ra từ `src/check_submission.py`:
 3. Một lỗi ID trong job của bạn (nếu không còn sót, chọn lỗi đã sửa) có thể làm xe tự lái dự đoán sai chuyển động của người đó như thế nào? Lỗi đó ảnh hưởng MOTA hay IDF1 nhiều hơn?
 
    ...
-
-## Bonus (nếu làm)
-
-### B1 — Hai người đi sát
-
-...
-
-### B2 — So cách đặt keyframe
-
-| Cách đặt | Số keyframe | Frame trôi nhất | Ghi chú |
-|---|---:|---:|---|
-| Đều mỗi 30 frame | | | |
-| Theo chỗ đổi hướng | | | |
-
-...
-
-### B3 — So với tracker có sẵn
-
-| Frame | Mã người | Tracker làm gì | Nhãn của bạn | Giải thích (đoán rồi sửa / ghép IoU / box score thấp / ngoại hình) |
-|---:|---|---|---|---|
-| | | | | |
-| | | | | |
 
 ## 7. Tài liệu tham khảo và công cụ AI đã dùng
 
